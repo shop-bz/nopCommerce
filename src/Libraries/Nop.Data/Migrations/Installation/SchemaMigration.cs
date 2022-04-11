@@ -121,7 +121,7 @@ namespace Nop.Data.Migrations.Installation
             Create.TableFor<PictureBinary>();
             Create.TableFor<ProductPicture>();
             Create.TableFor<Video>();
-            Create.TableFor<ProductVideoMapping>();
+            Create.TableFor<ProductVideo>();
             Create.TableFor<Setting>();
             Create.TableFor<Discount>();
             Create.TableFor<DiscountCategoryMapping>();

@@ -18,9 +18,9 @@ namespace Nop.Data.Migrations.UpgradeTo460
             {
                 Create.TableFor<Video>();
             }
-            if (!Schema.Table(NameCompatibilityManager.GetTableName(typeof(ProductVideoMapping))).Exists())
+            if (!Schema.Table(NameCompatibilityManager.GetTableName(typeof(ProductVideo))).Exists())
             {
-                Create.TableFor<ProductVideoMapping>();
+                Create.TableFor<ProductVideo>();
             }
 
         }

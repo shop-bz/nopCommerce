@@ -9,29 +9,26 @@ using Nop.Services.Catalog;
 
 namespace Nop.Services.Media
 {
+    /// <summary>
+    /// Video service
+    /// </summary>
     public partial class VideoService : IVideoService
     {
         #region Fields
 
+        private readonly IRepository<ProductVideo> _productVideoMappingRepository;
         private readonly IRepository<Video> _videoRepository;
-        private readonly IRepository<ProductVideoMapping> _productVideoMappingRepository;
 
         #endregion
 
         #region Ctor
 
-        public VideoService(
-            IRepository<Video> videoRepository,
-            IRepository<ProductVideoMapping> productVideoMappingRepository
-            )
+        public VideoService(IRepository<ProductVideo> productVideoMappingRepository,
+            IRepository<Video> videoRepository)
         {
-            _videoRepository = videoRepository;
             _productVideoMappingRepository = productVideoMappingRepository;
+            _videoRepository = videoRepository;
         }
-
-        #endregion
-
-        #region Utilities
 
         #endregion
 
@@ -54,12 +51,11 @@ namespace Nop.Services.Media
         /// Gets videos by product identifier
         /// </summary>
         /// <param name="productId">Product identifier</param>
-        /// <param name="recordsToReturn">Number of records to return. 0 if you want to get all items</param>
         /// <returns>
         /// A task that represents the asynchronous operation
         /// The task result contains the videos
         /// </returns>
-        public virtual async Task<IList<Video>> GetVideosByProductIdAsync(int productId, int recordsToReturn = 0)
+        public virtual async Task<IList<Video>> GetVideosByProductIdAsync(int productId)
         {
             if (productId == 0)
                 return new List<Video>();
@@ -69,9 +65,6 @@ namespace Nop.Services.Media
                         orderby pv.DisplayOrder, pv.Id
                         where pv.ProductId == productId
                         select v;
-
-            if (recordsToReturn > 0)
-                query = query.Take(recordsToReturn);
 
             var videos = await query.ToListAsync();
 
@@ -98,10 +91,13 @@ namespace Nop.Services.Media
         /// <param name="video">Video</param>
         /// <returns>
         /// A task that represents the asynchronous operation
+        /// The task result contains the video
         /// </returns>
-        public virtual async Task UpdateVideoAsync(Video video)
+        public virtual async Task<Video> UpdateVideoAsync(Video video)
         {
             await _videoRepository.UpdateAsync(video);
+            
+            return video;
         }
 
         /// <summary>

@@ -1813,7 +1813,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 //insert video
                 await _videoService.InsertVideoAsync(video);
 
-                await _productService.InsertProductVideoAsync(new ProductVideoMapping
+                await _productService.InsertProductVideoAsync(new ProductVideo
                 {
                     VideoId = video.Id,
                     ProductId = product.Id,

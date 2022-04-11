@@ -32,8 +32,8 @@ namespace Nop.Services.Catalog
         private readonly IProductTagService _productTagService;
         private readonly ISpecificationAttributeService _specificationAttributeService;
         private readonly IStoreMappingService _storeMappingService;
-        private readonly IVideoService _videoService;
         private readonly IUrlRecordService _urlRecordService;
+        private readonly IVideoService _videoService;
 
         #endregion
 
@@ -52,8 +52,8 @@ namespace Nop.Services.Catalog
             IProductTagService productTagService,
             ISpecificationAttributeService specificationAttributeService,
             IStoreMappingService storeMappingService,
-            IVideoService videoService,
-            IUrlRecordService urlRecordService)
+            IUrlRecordService urlRecordService,
+            IVideoService videoService)
         {
             _categoryService = categoryService;
             _downloadService = downloadService;
@@ -68,8 +68,8 @@ namespace Nop.Services.Catalog
             _productTagService = productTagService;
             _specificationAttributeService = specificationAttributeService;
             _storeMappingService = storeMappingService;
-            _videoService = videoService;
             _urlRecordService = urlRecordService;
+            _videoService = videoService;
         }
 
         #endregion
@@ -96,11 +96,11 @@ namespace Nop.Services.Catalog
         /// </summary>
         /// <param name="product">Product</param>
         /// <param name="isPublished">A value indicating whether they should be published</param>
-        /// <param name="copyImages">A value indicating whether to copy images</param>
+        /// <param name="copyMultimedia">A value indicating whether to copy images and videos</param>
         /// <param name="copyAssociatedProducts">A value indicating whether to copy associated products</param>
         /// <param name="productCopy">New product</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        protected virtual async Task CopyAssociatedProductsAsync(Product product, bool isPublished, bool copyImages, bool copyAssociatedProducts, Product productCopy)
+        protected virtual async Task CopyAssociatedProductsAsync(Product product, bool isPublished, bool copyMultimedia, bool copyAssociatedProducts, Product productCopy)
         {
             if (!copyAssociatedProducts)
                 return;
@@ -110,7 +110,7 @@ namespace Nop.Services.Catalog
             {
                 var associatedProductCopy = await CopyProductAsync(associatedProduct,
                     string.Format(NopCatalogDefaults.ProductCopyNameTemplate, associatedProduct.Name),
-                    isPublished, copyImages, false);
+                    isPublished, copyMultimedia, false);
                 associatedProductCopy.ParentGroupedProductId = productCopy.Id;
                 await _productService.UpdateProductAsync(associatedProductCopy);
             }
@@ -500,17 +500,17 @@ namespace Nop.Services.Catalog
         /// </summary>
         /// <param name="product">Product</param>
         /// <param name="newName">New product name</param>
-        /// <param name="copyImages"></param>
+        /// <param name="copyMultimedia"></param>
         /// <param name="productCopy">New product</param>
         /// <returns>
         /// A task that represents the asynchronous operation
         /// The task result contains the identifiers of old and new pictures
         /// </returns>
-        protected virtual async Task<Dictionary<int, int>> CopyProductPicturesAsync(Product product, string newName, bool copyImages, Product productCopy)
+        protected virtual async Task<Dictionary<int, int>> CopyProductPicturesAsync(Product product, string newName, bool copyMultimedia, Product productCopy)
         {
             //variable to store original and new picture identifiers
             var originalNewPictureIdentifiers = new Dictionary<int, int>();
-            if (!copyImages)
+            if (!copyMultimedia)
                 return originalNewPictureIdentifiers;
 
             foreach (var productPicture in await _productService.GetProductPicturesByProductIdAsync(product.Id))
@@ -549,7 +549,7 @@ namespace Nop.Services.Catalog
                 {
                     var video = await _videoService.GetVideoByIdAsync(productVideo.VideoId);
                     var videoCopy = await _videoService.InsertVideoAsync(video);
-                    await _productService.InsertProductVideoAsync(new ProductVideoMapping
+                    await _productService.InsertProductVideoAsync(new ProductVideo
                     {
                         ProductId = productCopy.Id,
                         VideoId = videoCopy.Id,

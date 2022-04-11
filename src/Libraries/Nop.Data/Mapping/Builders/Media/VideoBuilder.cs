@@ -17,7 +17,7 @@ namespace Nop.Data.Mapping.Builders.Media
         public override void MapEntity(CreateTableExpressionBuilder table)
         {
             table
-                .WithColumn(nameof(Video.VideoUrl)).AsString(400).NotNullable();
+                .WithColumn(nameof(Video.VideoUrl)).AsString(1000).NotNullable();
         }
 
         #endregion

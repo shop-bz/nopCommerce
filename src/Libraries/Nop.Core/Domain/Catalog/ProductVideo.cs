@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a product video mapping
     /// </summary>
-    public partial class ProductVideoMapping : BaseEntity
+    public partial class ProductVideo : BaseEntity
     {
         /// <summary>
         /// Gets or sets the product identifier

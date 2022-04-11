@@ -8,7 +8,7 @@ namespace Nop.Data.Mapping.Builders.Catalog
     /// <summary>
     /// Represents a product video mapping entity builder
     /// </summary>
-    public partial class ProductVideoBuilder : NopEntityBuilder<ProductVideoMapping>
+    public partial class ProductVideoBuilder : NopEntityBuilder<ProductVideo>
     {
         #region Methods
 
@@ -19,8 +19,8 @@ namespace Nop.Data.Mapping.Builders.Catalog
         public override void MapEntity(CreateTableExpressionBuilder table)
         {
             table
-                .WithColumn(nameof(ProductVideoMapping.VideoId)).AsInt32().ForeignKey<Video>()
-                .WithColumn(nameof(ProductVideoMapping.ProductId)).AsInt32().ForeignKey<Product>();
+                .WithColumn(nameof(ProductVideo.VideoId)).AsInt32().ForeignKey<Video>()
+                .WithColumn(nameof(ProductVideo.ProductId)).AsInt32().ForeignKey<Product>();
         }
 
         #endregion

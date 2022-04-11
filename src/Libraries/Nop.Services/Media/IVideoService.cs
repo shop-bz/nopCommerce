@@ -23,12 +23,11 @@ namespace Nop.Services.Media
         /// Gets videos by product identifier
         /// </summary>
         /// <param name="productId">Product identifier</param>
-        /// <param name="recordsToReturn">Number of records to return. 0 if you want to get all items</param>
         /// <returns>
         /// A task that represents the asynchronous operation
         /// The task result contains the videos
         /// </returns>
-        Task<IList<Video>> GetVideosByProductIdAsync(int productId, int recordsToReturn = 0);
+        Task<IList<Video>> GetVideosByProductIdAsync(int productId);
 
         /// <summary>
         /// Inserts a video
@@ -46,8 +45,9 @@ namespace Nop.Services.Media
         /// <param name="video">Video</param>
         /// <returns>
         /// A task that represents the asynchronous operation
+        /// The task result contains the video
         /// </returns>
-        Task UpdateVideoAsync(Video video);
+        Task<Video> UpdateVideoAsync(Video video);
 
         /// <summary>
         /// Deletes a video
