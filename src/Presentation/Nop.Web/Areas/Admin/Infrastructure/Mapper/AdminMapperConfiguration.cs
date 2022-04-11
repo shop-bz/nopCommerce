@@ -1129,7 +1129,10 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
                 .ForMember(settings => settings.AutoCompleteSearchThumbPictureSize, options => options.Ignore())
                 .ForMember(settings => settings.AzureCacheControlHeader, options => options.Ignore())
                 .ForMember(settings => settings.UseAbsoluteImagePath, options => options.Ignore())
-                .ForMember(settings => settings.ImageSquarePictureSize, options => options.Ignore());
+                .ForMember(settings => settings.ImageSquarePictureSize, options => options.Ignore())
+                .ForMember(settings => settings.VideosIframeAllow, options => options.Ignore())
+                .ForMember(settings => settings.VideosIframeHeight, options => options.Ignore())
+                .ForMember(settings => settings.VideosIframWidth, options => options.Ignore());
         }
 
         /// <summary>

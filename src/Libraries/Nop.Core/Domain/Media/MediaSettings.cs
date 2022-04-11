@@ -116,5 +116,11 @@ namespace Nop.Core.Domain.Media
         /// Gets or sets a value indicating whether need to use absolute pictures path
         /// </summary>
         public bool UseAbsoluteImagePath { get; set; }
+
+        public string VideosIframeAllow { get; set; }
+
+        public int VideosIframWidth { get; set; }
+
+        public int VideosIframeHeight { get; set; }
     }
 }

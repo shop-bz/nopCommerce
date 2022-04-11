@@ -3084,7 +3084,10 @@ namespace Nop.Services.Installation
                 MultipleThumbDirectories = false,
                 ImportProductImagesUsingHash = true,
                 AzureCacheControlHeader = string.Empty,
-                UseAbsoluteImagePath = true
+                UseAbsoluteImagePath = true,
+                VideosIframeAllow = "fullscreen",
+                VideosIframWidth = 300,
+                VideosIframeHeight = 150
             });
 
             await settingService.SaveSettingAsync(new StoreInformationSettings
