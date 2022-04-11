@@ -8242,7 +8242,7 @@ pre {
 
   .video-gallery {
     float: left;
-    width: 50%;
+    width: auto;
   }
 
   .overview {
