@@ -16,17 +16,17 @@ namespace Nop.Services.Media
     {
         #region Fields
 
-        private readonly IRepository<ProductVideo> _productVideoMappingRepository;
+        private readonly IRepository<ProductVideo> _productVideoRepository;
         private readonly IRepository<Video> _videoRepository;
 
         #endregion
 
         #region Ctor
 
-        public VideoService(IRepository<ProductVideo> productVideoMappingRepository,
+        public VideoService(IRepository<ProductVideo> productVideoRepository,
             IRepository<Video> videoRepository)
         {
-            _productVideoMappingRepository = productVideoMappingRepository;
+            _productVideoRepository = productVideoRepository;
             _videoRepository = videoRepository;
         }
 
@@ -61,7 +61,7 @@ namespace Nop.Services.Media
                 return new List<Video>();
 
             var query = from v in _videoRepository.Table
-                        join pv in _productVideoMappingRepository.Table on v.Id equals pv.VideoId
+                        join pv in _productVideoRepository.Table on v.Id equals pv.VideoId
                         orderby pv.DisplayOrder, pv.Id
                         where pv.ProductId == productId
                         select v;

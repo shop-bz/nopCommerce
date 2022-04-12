@@ -54,7 +54,7 @@ namespace Nop.Services.Catalog
         protected readonly IRepository<ProductReviewHelpfulness> _productReviewHelpfulnessRepository;
         protected readonly IRepository<ProductSpecificationAttribute> _productSpecificationAttributeRepository;
         protected readonly IRepository<ProductTag> _productTagRepository;
-        protected readonly IRepository<ProductVideo> _productVideoMappingRepository;
+        protected readonly IRepository<ProductVideo> _productVideoRepository;
         protected readonly IRepository<ProductWarehouseInventory> _productWarehouseInventoryRepository;
         protected readonly IRepository<RelatedProduct> _relatedProductRepository;
         protected readonly IRepository<Shipment> _shipmentRepository;
@@ -96,7 +96,7 @@ namespace Nop.Services.Catalog
             IRepository<ProductReviewHelpfulness> productReviewHelpfulnessRepository,
             IRepository<ProductSpecificationAttribute> productSpecificationAttributeRepository,
             IRepository<ProductTag> productTagRepository,
-            IRepository<ProductVideo> productVideoMappingRepository,
+            IRepository<ProductVideo> productVideoRepository,
             IRepository<ProductWarehouseInventory> productWarehouseInventoryRepository,
             IRepository<RelatedProduct> relatedProductRepository,
             IRepository<Shipment> shipmentRepository,
@@ -134,7 +134,7 @@ namespace Nop.Services.Catalog
             _productReviewHelpfulnessRepository = productReviewHelpfulnessRepository;
             _productSpecificationAttributeRepository = productSpecificationAttributeRepository;
             _productTagRepository = productTagRepository;
-            _productVideoMappingRepository = productVideoMappingRepository;
+            _productVideoRepository = productVideoRepository;
             _productWarehouseInventoryRepository = productWarehouseInventoryRepository;
             _relatedProductRepository = relatedProductRepository;
             _shipmentRepository = shipmentRepository;
@@ -2318,11 +2318,11 @@ namespace Nop.Services.Catalog
         /// <summary>
         /// Deletes a product video
         /// </summary>
-        /// <param name="productVideoMapping">Product video</param>
+        /// <param name="productVideo">Product video</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task DeleteProductVideoAsync(ProductVideo productVideoMapping)
+        public virtual async Task DeleteProductVideoAsync(ProductVideo productVideo)
         {
-            await _productVideoMappingRepository.DeleteAsync(productVideoMapping);
+            await _productVideoRepository.DeleteAsync(productVideo);
         }
 
         /// <summary>
@@ -2335,7 +2335,7 @@ namespace Nop.Services.Catalog
         /// </returns>
         public virtual async Task<IList<ProductVideo>> GetProductVideosByProductIdAsync(int productId)
         {
-            var query = from pvm in _productVideoMappingRepository.Table
+            var query = from pvm in _productVideoRepository.Table
                         where pvm.ProductId == productId
                         orderby pvm.DisplayOrder, pvm.Id
                         select pvm;
@@ -2355,27 +2355,27 @@ namespace Nop.Services.Catalog
         /// </returns>
         public virtual async Task<ProductVideo> GetProductVideoByIdAsync(int productVideoId)
         {
-            return await _productVideoMappingRepository.GetByIdAsync(productVideoId, cache => default);
+            return await _productVideoRepository.GetByIdAsync(productVideoId, cache => default);
         }
 
         /// <summary>
         /// Inserts a product video
         /// </summary>
-        /// <param name="productVideoMapping">Product picture</param>
+        /// <param name="productVideo">Product picture</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task InsertProductVideoAsync(ProductVideo productVideoMapping)
+        public virtual async Task InsertProductVideoAsync(ProductVideo productVideo)
         {
-            await _productVideoMappingRepository.InsertAsync(productVideoMapping);
+            await _productVideoRepository.InsertAsync(productVideo);
         }
 
         /// <summary>
         /// Updates a product video
         /// </summary>
-        /// <param name="productVideoMapping">Product video</param>
+        /// <param name="productVideo">Product video</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task UpdateProductVideoAsync(ProductVideo productVideoMapping)
+        public virtual async Task UpdateProductVideoAsync(ProductVideo productVideo)
         {
-            await _productVideoMappingRepository.UpdateAsync(productVideoMapping);
+            await _productVideoRepository.UpdateAsync(productVideo);
         }
 
         #endregion

@@ -714,9 +714,9 @@ namespace Nop.Services.Catalog
         /// <summary>
         /// Deletes a product video
         /// </summary>
-        /// <param name="productVideoMapping">Product video</param>
+        /// <param name="productVideo">Product video</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task DeleteProductVideoAsync(ProductVideo productVideoMapping);
+        Task DeleteProductVideoAsync(ProductVideo productVideo);
 
         /// <summary>
         /// Gets a product videos by product identifier
@@ -741,16 +741,16 @@ namespace Nop.Services.Catalog
         /// <summary>
         /// Inserts a product video
         /// </summary>
-        /// <param name="productVideoMapping">Product picture</param>
+        /// <param name="productVideo">Product picture</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task InsertProductVideoAsync(ProductVideo productVideoMapping);
+        Task InsertProductVideoAsync(ProductVideo productVideo);
 
         /// <summary>
         /// Updates a product video
         /// </summary>
-        /// <param name="productVideoMapping">Product video</param>
+        /// <param name="productVideo">Product video</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task UpdateProductVideoAsync(ProductVideo productVideoMapping);
+        Task UpdateProductVideoAsync(ProductVideo productVideo);
 
         #endregion
 
