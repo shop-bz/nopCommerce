@@ -107,24 +107,24 @@ namespace Nop.Web.Framework.Migrations.UpgradeTo460
             }
 
             //#7
-            if (!settingService.SettingExistsAsync(mediaSettings, settings => settings.VideosIframeAllow).Result)
+            if (!settingService.SettingExistsAsync(mediaSettings, settings => settings.VideoIframeAllow).Result)
             {
-                mediaSettings.VideosIframeAllow = "fullscreen";
-                settingService.SaveSettingAsync(mediaSettings, settings => settings.VideosIframeAllow).Wait();
+                mediaSettings.VideoIframeAllow = "fullscreen";
+                settingService.SaveSettingAsync(mediaSettings, settings => settings.VideoIframeAllow).Wait();
             }
 
             //#7
-            if (!settingService.SettingExistsAsync(mediaSettings, settings => settings.VideosIframWidth).Result)
+            if (!settingService.SettingExistsAsync(mediaSettings, settings => settings.VideoIframeWidth).Result)
             {
-                mediaSettings.VideosIframWidth = 300;
-                settingService.SaveSettingAsync(mediaSettings, settings => settings.VideosIframWidth).Wait();
+                mediaSettings.VideoIframeWidth = 300;
+                settingService.SaveSettingAsync(mediaSettings, settings => settings.VideoIframeWidth).Wait();
             }
 
             //#7
-            if (!settingService.SettingExistsAsync(mediaSettings, settings => settings.VideosIframeHeight).Result)
+            if (!settingService.SettingExistsAsync(mediaSettings, settings => settings.VideoIframeHeight).Result)
             {
-                mediaSettings.VideosIframeHeight = 150;
-                settingService.SaveSettingAsync(mediaSettings, settings => settings.VideosIframeHeight).Wait();
+                mediaSettings.VideoIframeHeight = 150;
+                settingService.SaveSettingAsync(mediaSettings, settings => settings.VideoIframeHeight).Wait();
             }
         }
 

@@ -1207,9 +1207,9 @@ namespace Nop.Web.Factories
                 var videoModel = new VideoModel
                 {
                     VideoUrl = video.VideoUrl,
-                    Allow = _mediaSettings.VideosIframeAllow,
-                    Width = _mediaSettings.VideosIframWidth,
-                    Height = _mediaSettings.VideosIframeHeight
+                    Allow = _mediaSettings.VideoIframeAllow,
+                    Width = _mediaSettings.VideoIframeWidth,
+                    Height = _mediaSettings.VideoIframeHeight
                 };
 
                 allvideoModels.Add(videoModel);

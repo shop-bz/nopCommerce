@@ -117,10 +117,19 @@ namespace Nop.Core.Domain.Media
         /// </summary>
         public bool UseAbsoluteImagePath { get; set; }
 
-        public string VideosIframeAllow { get; set; }
+        /// <summary>
+        /// Gets or sets the value to specify a policy list for embedded content
+        /// </summary>
+        public string VideoIframeAllow { get; set; }
 
-        public int VideosIframWidth { get; set; }
+        /// <summary>
+        /// Gets or sets the width of the frame in CSS pixels
+        /// </summary>
+        public int VideoIframeWidth { get; set; }
 
-        public int VideosIframeHeight { get; set; }
+        /// <summary>
+        /// Gets or sets the height of the frame in CSS pixels
+        /// </summary>
+        public int VideoIframeHeight { get; set; }
     }
 }
